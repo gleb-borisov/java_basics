@@ -6,12 +6,12 @@ public class Loader
 
         murka.getWeight();
 
-        // Перекармливаем кошку
+        // Замяукиваем кошку
 
-        while (murka.getWeight() < 9001) {
+        while (murka.getWeight() > 999) {
             System.out.println("Вес Мурки = " + murka.getWeight() + " грамм");
             System.out.println(murka.getStatus());
-            murka.feed(1.0);
+            murka.meow();
         }
     }
 }
