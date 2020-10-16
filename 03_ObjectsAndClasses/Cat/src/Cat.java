@@ -7,12 +7,15 @@ public class Cat
     private double minWeight;
     private double maxWeight;
 
+    private double food; // Ввел переменную для учета сьеденной еды
+
     public Cat()
     {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
         minWeight = 1000.0;
         maxWeight = 9000.0;
+        food = 0;
 
     }
 
@@ -51,5 +54,16 @@ public class Cat
         else {
             return "Playing";
         }
+    }
+    // Метод возвращения сьеденной еды
+    public void sumCatFood ()
+    {
+        food = weight - originWeight;
+    }
+    public Double catFood() {return food;}
+    // Метод pee()
+    public void pee()
+    {
+        weight = weight - 150.0; // Ёмкость мочевого пузыря кошки = 150 грамм
     }
 }
