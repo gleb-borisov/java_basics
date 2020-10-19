@@ -6,15 +6,22 @@ public class Loader
         Cat masha = new Cat();
         Cat barsik = new Cat();
 
-        // Проверка - взрываем Васю
-        while (vasya.getWeight() < 9000) {
-            vasya.feed(100.0);
+        // Проверка - меняем максимальный вес Васи
+        while (vasya.getWeight() < 10000.0) {
+            vasya.feed(300.0);
+            System.out.println("Вес Васи = " + vasya.getWeight());
+            System.out.println("Вася " + vasya.getStatus());
+            if (vasya.deadCat() == true) break;
         }
 
-        System.out.println("Вася " + vasya.getStatus());
+        // Выводим состояние кошки - жива/мертва
+        if (vasya.deadCat() == false) {
+            System.out.println("Вася жив!");
+        } else {
+            System.out.println("Вася мёртв!");
+        }
 
-
-
+        // Проверяем кол-во кошек
         if (vasya.getStatus() == "Exploded" || vasya.getStatus() == "Dead") {
             Cat.count = Cat.count - 1;
         }
