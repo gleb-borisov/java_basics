@@ -7,7 +7,7 @@ public class Cat
     private double minWeight;
     private double maxWeight;
 
-    private double food; // Ввел переменную для учета сьеденной еды
+    static int count; // Создал статическую переменную count
 
     public Cat()
     {
@@ -15,8 +15,7 @@ public class Cat
         originWeight = weight;
         minWeight = 1000.0;
         maxWeight = 9000.0;
-        food = 0;
-
+        count++; // Добавил счетчик обьектов
     }
 
     public void meow()
@@ -55,15 +54,9 @@ public class Cat
             return "Playing";
         }
     }
-    // Метод возвращения сьеденной еды
-    public void sumCatFood ()
-    {
-        food = weight - originWeight;
-    }
-    public Double catFood() {return food;}
-    // Метод pee()
-    public void pee()
-    {
-        weight = weight - 150.0; // Ёмкость мочевого пузыря кошки = 150 грамм
+
+    // Статический метод getCount
+    public static int getCount() {
+        return count;
     }
 }

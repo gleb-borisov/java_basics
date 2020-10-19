@@ -2,24 +2,22 @@ public class Loader
 {
     public static void main(String[] args)
     {
-        Cat murka = new Cat();
+        Cat vasya = new Cat();
+        Cat masha = new Cat();
+        Cat barsik = new Cat();
 
-        murka.getWeight();
-        murka.sumCatFood();
-        murka.catFood();
-
-
-        // использование метода возврата сьеденной еды
-        while (murka.catFood() <= 150.0) {
-            System.out.println("Вес Мурки = " + murka.getWeight() + " грамм");
-            System.out.println("Кол-во съеденной еды = " + murka.catFood() + " грамм");
-            murka.feed(1.0);
-            murka.sumCatFood();
+        // Проверка - взрываем Васю
+        while (vasya.getWeight() < 9000) {
+            vasya.feed(100.0);
         }
 
-        // Использование метода pee()
-        murka.pee();
-        System.out.println("Мурка сходила на горшок емкостью в 150 мл");
-        System.out.println("Вес Мурки после опорожнения = " + murka.getWeight() + " грамм");
+        System.out.println("Вася " + vasya.getStatus());
+
+
+
+        if (vasya.getStatus() == "Exploded" || vasya.getStatus() == "Dead") {
+            Cat.count = Cat.count - 1;
+        }
+        System.out.println("Количество кошек = " + Cat.count);
     }
 }
