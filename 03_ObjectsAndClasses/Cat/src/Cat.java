@@ -4,19 +4,32 @@ public class Cat<catDead>
     private double originWeight;
     private double weight;
 
-    private static final double MIN_WEIGHT = 1000; // Константа минимального веса
-    private static final double MAX_WEIGHT = 9000; // Константа максимального веса
+    public static final double MIN_WEIGHT = 1000; // Константа минимального веса
+    public static final double MAX_WEIGHT = 9000; // Константа максимального веса
     public static final int CATS_EYES_COUNT = 2; // Константа кол-ва глаз у кошки
 
     static int count; // Создал статическую переменную count
 
     private boolean deadCat = false; // Задаем двоичную переменную для определения - жива ли кошка
 
+    private double kitten; // Задал дробную переменную для перегрузки
+
     public Cat()
     {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
         count++; // Добавил счетчик обьектов
+    }
+
+    // Создал перегрузку
+    public Cat (double kitten)
+    {
+        this.kitten = kitten;
+    }
+
+    // Создал метод по возвращению веса котёнка
+    public double getKittenWeight () {
+        return kitten;
     }
 
     public void meow()
