@@ -4,8 +4,9 @@ public class Cat<catDead>
     private double originWeight;
     private double weight;
 
-    private double minWeight;
-    private double maxWeight;
+    private static final double MIN_WEIGHT = 1000; // Константа минимального веса
+    private static final double MAX_WEIGHT = 9000; // Константа максимального веса
+    public static final int CATS_EYES_COUNT = 2; // Константа кол-ва глаз у кошки
 
     static int count; // Создал статическую переменную count
 
@@ -15,8 +16,6 @@ public class Cat<catDead>
     {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
-        minWeight = 1000.0;
-        maxWeight = 9000.0;
         count++; // Добавил счетчик обьектов
     }
 
@@ -52,10 +51,10 @@ public class Cat<catDead>
 
     public String getStatus()
     {
-        if(weight < minWeight) {
+        if(weight < MIN_WEIGHT) { // Заменил переменную на константу
             return "Dead";
         }
-        else if(weight > maxWeight) {
+        else if(weight > MAX_WEIGHT) { // Заменил переменную на константу
             return "Exploded";
         }
         else if(weight > originWeight) {
@@ -73,7 +72,7 @@ public class Cat<catDead>
 
     // Метод проверки жива ли кошка
     public boolean deadCat() {
-        if (getWeight() <= minWeight || getWeight() >= maxWeight) {
+        if (getWeight() <= MIN_WEIGHT || getWeight() >= MAX_WEIGHT) { // Заменил переменные на константы
             return deadCat = true;
         }
         else return deadCat = false;
