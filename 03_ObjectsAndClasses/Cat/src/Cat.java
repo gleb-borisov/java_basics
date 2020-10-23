@@ -19,6 +19,16 @@ public class Cat
 
     private double kitten; // Задал дробную переменную для перегрузки
 
+    private String catColor; // Создал переменную для окраса кошки
+
+    public void setCatColor(String catColor) { // Создал сеттер для окраса
+        this.catColor = catColor;
+    }
+
+    public String getCatColor() { // Создал геттер для окраса
+        return catColor;
+    }
+
     public Cat()
     {
         weight = 1500.0 + 3000.0 * Math.random();
