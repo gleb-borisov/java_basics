@@ -110,5 +110,30 @@ public class Loader
             System.out.println("Вес котёнка = " + kitten.getKittenWeight());
             i = ++i;
         }
+
+        // Создаем две копии Мурки
+        System.out.println();
+        System.out.println("Создаём две копии Мурки");
+        murka.setCatName("Мурка");
+        murka.setCatColor("Черный");
+        murka.setWeight(3000.0);
+
+        System.out.println("Имя Мурки - " + murka.getCatName());
+        System.out.println("Цвет Мурки - " + murka.getCatColor());
+        System.out.println("Вес Мурки - " + murka.getWeight() + " грамм");
+        System.out.println();
+
+        System.out.println("Вася - копия Мурки");
+        Cat vasya = new Cat(murka);
+        System.out.println("Имя Васи - " + vasya.getCatName());
+        System.out.println("Цвет Васи - " + vasya.getCatColor());
+        System.out.println("Вес Васи - " + vasya.getWeight() + " грамм");
+        System.out.println();
+
+        System.out.println("Пушок - копия Мурки");
+        Cat pushok = new Cat(murka);
+        System.out.println("Имя Пушка - " + pushok.getCatName());
+        System.out.println("Цвет Пушка - " + pushok.getCatColor());
+        System.out.println("Вес Пушка - " + pushok.getWeight() + " грамм");
     }
 }

@@ -20,6 +20,7 @@ public class Cat
     private double kitten; // Задал дробную переменную для перегрузки
 
     private String catColor; // Создал переменную для окраса кошки
+    private String catName; // Создал текстовую переменную для имени кошки
 
     public void setCatColor(String catColor) { // Создал сеттер для окраса
         this.catColor = catColor;
@@ -27,6 +28,14 @@ public class Cat
 
     public String getCatColor() { // Создал геттер для окраса
         return catColor;
+    }
+
+    public void setCatName(String catName) { // Создал сеттер для имени кошки
+        this.catName = catName;
+    }
+
+    public String getCatName() { // Создал геттер для имени кошки
+        return catName;
     }
 
     public Cat()
@@ -38,6 +47,21 @@ public class Cat
         food = 0;
         count++; // Добавил счетчик обьектов
     }
+
+    // Конструктор для задания параметров - веса имени и цвета кошки
+    public Cat (Double weight, String catName, String catColor) {
+        this.weight = weight;
+        this.catName = catName;
+        this.catColor = catColor;
+    }
+
+    // Конструктор для создании копии кошки
+    public Cat (Cat copy) {
+        this.weight = copy.getWeight();
+        this.catName = copy.getCatName();
+        this.catColor = copy.getCatColor();
+    }
+
 
     // Создал перегрузку
     public Cat (double kitten)    {
