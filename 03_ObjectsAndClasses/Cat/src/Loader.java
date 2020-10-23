@@ -28,5 +28,15 @@ public class Loader
         System.out.println();
         System.out.println("Новый вес Мурки = " + murka.getWeight() + " грамм");
         System.out.println("Новый вес Васьки = " + vaska.getWeight() + " грамм");
+
+        // Перекармливаем кошку
+        System.out.println();
+        System.out.println("Кормим Мурку");
+        while (murka.getWeight() < 9001) {
+            System.out.println("Вес Мурки = " + murka.getWeight() + " грамм");
+            System.out.println(murka.getStatus());
+            murka.feed(1.0);
+        }
+
     }
 }
