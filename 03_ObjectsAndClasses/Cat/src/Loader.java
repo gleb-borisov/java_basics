@@ -21,5 +21,12 @@ public class Loader
         System.out.println("Вес Пиночета = " + pinochet.getWeight() + " грамм");
         System.out.println("Вес Лапы = " + lapa.getWeight() + " грамм");
 
+        // Кормим двух кошек
+        murka.feed(1.0);
+        vaska.feed(1.0);
+
+        System.out.println();
+        System.out.println("Новый вес Мурки = " + murka.getWeight() + " грамм");
+        System.out.println("Новый вес Васьки = " + vaska.getWeight() + " грамм");
     }
 }
