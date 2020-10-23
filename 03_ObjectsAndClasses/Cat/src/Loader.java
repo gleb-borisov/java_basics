@@ -1,8 +1,7 @@
 
 public class Loader
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // Создаем семь кошек
         Cat murka = new Cat();
         Cat vaska = new Cat();
@@ -38,5 +37,13 @@ public class Loader
             murka.feed(1.0);
         }
 
+        // Замяукиваем кошку
+        System.out.println();
+        System.out.println("Замяукиваем Мурку");
+        while (murka.getWeight() > 999) {
+            System.out.println("Вес Мурки = " + murka.getWeight() + " грамм");
+            System.out.println(murka.getStatus());
+            murka.meow();
+        }
     }
 }
