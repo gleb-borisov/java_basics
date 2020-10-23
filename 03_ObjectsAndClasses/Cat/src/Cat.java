@@ -9,6 +9,8 @@ public class Cat
 
     private double food; // Ввел переменную для учета сьеденной еды
 
+    static int count; // Создал статическую переменную count
+
     public Cat()
     {
         weight = 1500.0 + 3000.0 * Math.random();
@@ -16,7 +18,7 @@ public class Cat
         minWeight = 1000.0;
         maxWeight = 9000.0;
         food = 0;
-
+        count++; // Добавил счетчик обьектов
     }
 
     public void meow()
@@ -70,4 +72,8 @@ public class Cat
         weight = weight - 150.0; // Ёмкость мочевого пузыря кошки = 150 грамм
     }
 
+    // Статический метод getCount
+    public static int getCount() {
+        return count;
+    }
 }

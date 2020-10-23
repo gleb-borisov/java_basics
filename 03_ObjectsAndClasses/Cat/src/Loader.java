@@ -46,6 +46,14 @@ public class Loader
             murka.meow();
         }
 
+        // Считаем кошек
+        System.out.println();
+        System.out.println("Считаем кошек");
+        if (murka.getStatus() == "Exploded" || murka.getStatus() == "Dead") {
+            Cat.count = Cat.count - 1;
+        }
+        System.out.println("Количество оставшихся кошек = " + Cat.count);
+
         // Использование метода возврата сьеденной еды
         System.out.println();
         System.out.println("Считаем сьеденную еду");
