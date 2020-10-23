@@ -35,6 +35,7 @@ public class Loader
             System.out.println("Вес Мурки = " + murka.getWeight() + " грамм");
             System.out.println(murka.getStatus());
             murka.feed(1.0);
+            if (murka.deadCat() == true) break;
         }
 
         // Замяукиваем кошку
@@ -62,6 +63,7 @@ public class Loader
             System.out.println("Кол-во съеденной еды = " + murka.catFood() + " грамм");
             murka.feed(1.0);
             murka.sumCatFood();
+            if (murka.deadCat() == true) break;
         }
 
         // Использование метода pee()
@@ -70,5 +72,27 @@ public class Loader
         murka.pee();
         System.out.println("Мурка сходила на горшок емкостью в 150 мл");
         System.out.println("Вес Мурки после опорожнения = " + murka.getWeight() + " грамм");
+
+        // Оживляем кошку
+        murka.setWeight(3000.0);
+
+        // Проверка - меняем максимальный вес кошки
+        System.out.println();
+        System.out.println("кормим кошку");
+        while (murka.getWeight() < 10000.0) {
+            murka.feed(300.0);
+            System.out.println("Вес Мурки = " + murka.getWeight());
+            System.out.println("Мурка " + murka.getStatus());
+            if (murka.deadCat() == true) break;
+        }
+
+        // Выводим состояние кошки - жива/мертва:
+        System.out.println();
+        System.out.println("Состояние кошки - жива/мертва");
+        if (murka.deadCat() == false) {
+            System.out.println("Мурка жива!");
+        } else {
+            System.out.println("Мурка мёртва!");
+        }
     }
 }
