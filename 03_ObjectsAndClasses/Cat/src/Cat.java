@@ -17,6 +17,8 @@ public class Cat
 
     private boolean deadCat = false; // Задаем двоичную переменную для определения - жива ли кошка
 
+    private double kitten; // Задал дробную переменную для перегрузки
+
     public Cat()
     {
         weight = 1500.0 + 3000.0 * Math.random();
@@ -26,6 +28,17 @@ public class Cat
         food = 0;
         count++; // Добавил счетчик обьектов
     }
+
+    // Создал перегрузку
+    public Cat (double kitten)    {
+        this.kitten = kitten;
+    }
+
+    // Создал метод по возвращению веса котёнка
+    public double getKittenWeight () {
+        return kitten;
+    }
+
 
     public void meow()
     {
