@@ -40,24 +40,32 @@ public class Loader
             System.out.println("Вес Мурки = " + murka.getWeight() + " грамм");
             murka.feed(1.0);
             System.out.println(murka.getStatus());
-            if (murka.deadCat() == true) break;
+            if (murka.deadCat()) {
+                break;
+            }
         }
 
         // Замяукиваем кошку
         System.out.println();
-        System.out.println("Замяукиваем Мурку");
-        while (murka.getStatus() != "Dead") {
-            System.out.println("Вес Мурки = " + murka.getWeight() + " грамм");
-            murka.meow();
-            System.out.println(murka.getStatus());
+        System.out.println("Замяукиваем Ваську");
+        while (vaska.getStatus() != "Dead") {
+            System.out.println("Вес Васьки = " + vaska.getWeight() + " грамм");
+            vaska.meow();
+            System.out.println(vaska.getStatus());
         }
 
         // Считаем кошек
         System.out.println();
         System.out.println("Считаем кошек");
-        if (murka.getStatus() == "Exploded" || murka.getStatus() == "Dead") {
-            Cat.count = Cat.count - 1;
-        }
+
+        murka.getCount();
+        vaska.getCount();
+        barsik.getCount();
+        pirozhok.getCount();
+        mashka.getCount();
+        pinochet.getCount();
+        lapa.getCount();
+
         System.out.println("Количество оставшихся кошек = " + Cat.count);
 
         // Использование метода возврата сьеденной еды
@@ -68,7 +76,9 @@ public class Loader
             System.out.println("Кол-во съеденной еды = " + murka.catFood() + " грамм");
             murka.feed(1.0);
             murka.sumCatFood();
-            if (murka.deadCat() == true) break;
+            if (murka.deadCat()) {
+                break;
+            }
         }
 
         // Использование метода pee()
@@ -88,16 +98,18 @@ public class Loader
             murka.feed(300.0);
             System.out.println("Вес Мурки = " + murka.getWeight());
             System.out.println("Мурка " + murka.getStatus());
-            if (murka.deadCat() == true) break;
+            if (murka.deadCat()) {
+                break;
+            }
         }
 
         // Выводим состояние кошки - жива/мертва:
         System.out.println();
         System.out.println("Состояние кошки - жива/мертва");
-        if (murka.deadCat() == false) {
-            System.out.println("Мурка жива!");
+        if (murka.deadCat()) {
+            System.out.println("Мурка мертва!");
         } else {
-            System.out.println("Мурка мёртва!");
+            System.out.println("Мурка жива!");
         }
 
         int i = 1;

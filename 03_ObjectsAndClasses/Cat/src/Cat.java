@@ -84,14 +84,18 @@ public class Cat
 
     public void feed(Double amount)
     {
-        if (deadCat() == true) return; // Запрет кушать для мёртвой кошки
+        if (deadCat()) { // Запрет кушать для мёртвой кошки
+            return;
+        }
         weight = weight + amount;
         oneFood = amount; // Присвоил переменной кол-во еды потребляемой кошкой за один раз
     }
 
     public void drink(Double amount)
     {
-        if (deadCat() == true) return; // Запрет пить для мёртвой кошки
+        if (deadCat()) { // Запрет пить для мёртвой кошки
+            return;
+        }
         weight = weight + amount;
     }
 
@@ -130,12 +134,16 @@ public class Cat
     // Метод pee()
     public void pee()
     {
-        if (deadCat() == true) return; // Запрет для мёртвой кошки ходить в туалет
+        if (deadCat()) { // Запрет для мёртвой кошки ходить в туалет
+            return;
+        }
         weight = weight - 150.0; // Ёмкость мочевого пузыря кошки = 150 грамм
     }
 
     // Статический метод getCount
-    public static int getCount() {
+    public int getCount() {
+        if (deadCat())
+        count = --count;
         return count;
     }
 
