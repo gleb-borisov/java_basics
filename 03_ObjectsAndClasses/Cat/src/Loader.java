@@ -117,7 +117,7 @@ public class Loader
 
         System.out.println();
         System.out.println("Создаём три котенка с заданным весом - 1100 грамм");
-        
+
         while (i <= 3) {
             Cat kitten = getKitten(); // Создаём обьект "котёнок" через метод private static Cat getKitten
             System.out.println("Вес котёнка = " + kitten.getKittenWeight());
