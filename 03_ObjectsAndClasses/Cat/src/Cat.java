@@ -52,6 +52,7 @@ public class Cat
 
     // Конструктор для задания параметров - веса имени и цвета кошки
     public Cat (Double weight, String catName, String catColor) {
+        this();
         this.weight = weight;
         this.catName = catName;
         this.catColor = catColor;
@@ -59,6 +60,7 @@ public class Cat
 
     // Конструктор для создании копии кошки
     public Cat (Cat copy) {
+        this();
         this.weight = copy.getWeight();
         this.catName = copy.getCatName();
         this.catColor = copy.getCatColor();
@@ -67,6 +69,7 @@ public class Cat
 
     // Создал перегрузку
     public Cat (double kitten)    {
+        this();
         this.kitten = kitten;
     }
 
