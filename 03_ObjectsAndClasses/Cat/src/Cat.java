@@ -22,6 +22,8 @@ public class Cat
     private String catColor; // Создал переменную для окраса кошки
     private String catName; // Создал текстовую переменную для имени кошки
 
+    Double oneFood = 0.0; // Добавил переменную по суммированию еды
+
     public void setCatColor(String catColor) { // Создал сеттер для окраса
         this.catColor = catColor;
     }
@@ -84,6 +86,7 @@ public class Cat
     {
         if (deadCat() == true) return; // Запрет кушать для мёртвой кошки
         weight = weight + amount;
+        oneFood = amount; // Присвоил переменной кол-во еды потребляемой кошкой за один раз
     }
 
     public void drink(Double amount)
@@ -120,7 +123,7 @@ public class Cat
     // Метод возвращения сьеденной еды
     public void sumCatFood ()
     {
-        food = weight - originWeight;
+        food = food + oneFood; // Переделал метод для подсчета сьеденной еды
     }
     public Double catFood() {return food;}
 
