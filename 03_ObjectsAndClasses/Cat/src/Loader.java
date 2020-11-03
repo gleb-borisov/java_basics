@@ -41,6 +41,7 @@ public class Loader
             murka.feed(1.0);
             System.out.println(murka.getStatus());
         }
+        System.out.println("Кот(кошка) не может кушать.");
 
         // Замяукиваем кошку
         System.out.println();

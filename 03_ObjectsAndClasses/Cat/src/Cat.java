@@ -15,14 +15,12 @@ public class Cat
 
     static int count; // Создал статическую переменную count
 
-    private boolean deadCat = false; // Задаем двоичную переменную для определения - жива ли кошка
+    private boolean deadCat; // Задаем двоичную переменную для определения - жива ли кошка
 
     private double kitten; // Задал дробную переменную для перегрузки
 
     private Color catColor; // Создал переменную для окраса кошки
     private String catName; // Создал текстовую переменную для имени кошки
-
-    Double oneFood = 0.0; // Добавил переменную по суммированию еды
 
     public void setCatColor(String catColor) { // Создал сеттер для окраса
         this.catColor = Color.BLACK;
@@ -48,6 +46,7 @@ public class Cat
         maxWeight = 9000.0;
         food = 0;
         count++; // Добавил счетчик обьектов
+        deadCat = false; // Ввел состояние кота в конструктор
     }
 
     // Конструктор для задания параметров - веса имени и цвета кошки
