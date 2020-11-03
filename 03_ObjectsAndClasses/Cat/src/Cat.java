@@ -17,7 +17,7 @@ public class Cat
 
     private boolean deadCat; // Задаем двоичную переменную для определения - жива ли кошка
 
-    private double kitten; // Задал дробную переменную для перегрузки
+    private double kittenWeight; // Задал дробную переменную для перегрузки
 
     private Color catColor; // Создал переменную для окраса кошки
     private String catName; // Создал текстовую переменную для имени кошки
@@ -67,14 +67,14 @@ public class Cat
 
 
     // Создал перегрузку
-    public Cat (double kitten)    {
+    public Cat (double kittenWeight)    {
         this();
-        this.kitten = kitten;
+        this.kittenWeight = kittenWeight;
     }
 
     // Создал метод по возвращению веса котёнка
     public double getKittenWeight () {
-        return kitten;
+        return kittenWeight;
     }
 
 
