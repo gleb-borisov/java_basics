@@ -91,7 +91,11 @@ public class Cat
             return;
         }
         weight = weight + amount;
-        oneFood = amount; // Присвоил переменной кол-во еды потребляемой кошкой за один раз
+        food = food + amount; // Учет сьеденого
+    }
+
+    public double getFood () { // Геттер для возвращения кол-ва сьеденного
+        return food;
     }
 
     public void drink(Double amount)
@@ -126,13 +130,6 @@ public class Cat
         }
 
     }
-
-    // Метод возвращения сьеденной еды
-    public void sumCatFood ()
-    {
-        food = food + oneFood; // Переделал метод для подсчета сьеденной еды
-    }
-    public Double catFood() {return food;}
 
     // Метод pee()
     public void pee()

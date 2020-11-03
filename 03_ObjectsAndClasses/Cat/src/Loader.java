@@ -71,11 +71,10 @@ public class Loader
         // Использование метода возврата сьеденной еды
         System.out.println();
         System.out.println("Считаем сьеденную еду");
-        while (murka.catFood() <= 150.0) {
+        while (murka.getFood() <= 150.0) {
             System.out.println("Вес Мурки = " + murka.getWeight() + " грамм");
-            System.out.println("Кол-во съеденной еды = " + murka.catFood() + " грамм");
+            System.out.println("Кол-во съеденной еды = " + murka.getFood() + " грамм");
             murka.feed(1.0);
-            murka.sumCatFood();
             if (murka.deadCat()) {
                 break;
             }
