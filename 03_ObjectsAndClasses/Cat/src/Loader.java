@@ -36,19 +36,16 @@ public class Loader
         // Перекармливаем кошку
         System.out.println();
         System.out.println("Кормим Мурку");
-        while (murka.getStatus() != "Exploded") {
+        while (murka.deadCat() == false) {
             System.out.println("Вес Мурки = " + murka.getWeight() + " грамм");
             murka.feed(1.0);
             System.out.println(murka.getStatus());
-            if (murka.deadCat()) {
-                break;
-            }
         }
 
         // Замяукиваем кошку
         System.out.println();
         System.out.println("Замяукиваем Ваську");
-        while (vaska.getStatus() != "Dead") {
+        while (vaska.deadCat() == false) {
             System.out.println("Вес Васьки = " + vaska.getWeight() + " грамм");
             vaska.meow();
             System.out.println(vaska.getStatus());
