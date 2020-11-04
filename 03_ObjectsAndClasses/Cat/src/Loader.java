@@ -36,34 +36,24 @@ public class Loader
         // Перекармливаем кошку
         System.out.println();
         System.out.println("Кормим Мурку");
-        while (murka.deadCat() == false) {
+        while (murka.getIsAlive()) {
             System.out.println("Вес Мурки = " + murka.getWeight() + " грамм");
-            murka.feed(1.0);
             System.out.println(murka.getStatus());
+            murka.feed(1.0);
         }
-        System.out.println("Кот(кошка) не может кушать.");
 
         // Замяукиваем кошку
         System.out.println();
         System.out.println("Замяукиваем Ваську");
-        while (vaska.deadCat() == false) {
+        while (vaska.getIsAlive()) {
             System.out.println("Вес Васьки = " + vaska.getWeight() + " грамм");
-            vaska.meow();
             System.out.println(vaska.getStatus());
+            vaska.meow();
         }
 
         // Считаем кошек
         System.out.println();
         System.out.println("Считаем кошек");
-
-        murka.getCount();
-        vaska.getCount();
-        barsik.getCount();
-        pirozhok.getCount();
-        mashka.getCount();
-        pinochet.getCount();
-        lapa.getCount();
-
         System.out.println("Количество оставшихся кошек = " + Cat.count);
 
         // Использование метода возврата сьеденной еды

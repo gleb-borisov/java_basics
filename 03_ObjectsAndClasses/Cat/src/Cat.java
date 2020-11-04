@@ -22,6 +22,12 @@ public class Cat
     private Color catColor; // Создал переменную для окраса кошки
     private String catName; // Создал текстовую переменную для имени кошки
 
+    private boolean isAlive; // Переменная содержащая состояние кота (жив/мертв)
+
+    public Boolean getIsAlive () { // Создал геттер возвращающий состояние кота (жив/мертв)
+        return isAlive;
+    }
+
     public void setCatColor(String catColor) { // Создал сеттер для окраса
         this.catColor = Color.BLACK;
     }
@@ -47,6 +53,7 @@ public class Cat
         food = 0;
         count++; // Добавил счетчик обьектов
         deadCat = false; // Ввел состояние кота в конструктор
+        isAlive = true;
     }
 
     // Конструктор для задания параметров - веса имени и цвета кошки
@@ -80,17 +87,26 @@ public class Cat
 
     public void meow()
     {
-        weight = weight - 1;
-        System.out.println("Meow");
+        isAlive = isWeightNormal();
+        if (isAlive) {
+            weight = weight - 1;
+            System.out.println("Meow");
+        } else {
+            System.out.println("Кот(кошка) не может мяукать.");
+            count--;
+        }
     }
 
     public void feed(Double amount)
     {
-        if (deadCat()) { // Запрет кушать для мёртвой кошки
-            return;
+        isAlive = isWeightNormal(); // Присвоение переменной результата проверки
+        if (isAlive) {
+            weight = weight + amount;
+            food = food + amount; // Учет сьеденого
+        } else {
+            System.out.println("Кот(кошка) не может кушать.");
+            count--;
         }
-        weight = weight + amount;
-        food = food + amount; // Учет сьеденого
     }
 
     public double getFood () { // Геттер для возвращения кол-ва сьеденного
@@ -142,7 +158,7 @@ public class Cat
     // Статический метод getCount
     public int getCount() {
         if (deadCat())
-        count = --count;
+        count--;
         return count;
     }
 
@@ -151,6 +167,13 @@ public class Cat
         if (getWeight() <= MIN_WEIGHT || getWeight() >= MAX_WEIGHT) { // Заменил переменные на константы
             return deadCat = true;
         }
-        else return deadCat = false;
+        else {
+            return deadCat = false;
+        }
+    }
+
+    // Дополнительный метод проверки состояния кота
+    public boolean isWeightNormal() {
+        return (weight> MIN_WEIGHT && weight <MAX_WEIGHT);
     }
 }
