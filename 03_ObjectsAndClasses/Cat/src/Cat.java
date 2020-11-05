@@ -99,14 +99,19 @@ public class Cat
 
     public void feed(Double amount)
     {
-        isAlive = isWeightNormal(); // Присвоение переменной результата проверки
         if (isAlive) {
-            weight = weight + amount;
-            food = food + amount; // Учет сьеденого
+            if (isWeightNormal()) {
+                weight = weight + amount;
+                food = food + amount; // Учет сьеденого
+            } else {
+                System.out.println("Кот(кошка) не может кушать.");
+                isAlive = false;
+                count--;
+            }
         } else {
-            System.out.println("Кот(кошка) не может кушать.");
-            count--;
+            return;
         }
+
     }
 
     public double getFood () { // Геттер для возвращения кол-ва сьеденного
