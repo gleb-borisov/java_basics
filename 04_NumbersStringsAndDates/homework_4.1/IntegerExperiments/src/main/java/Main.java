@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.stream.IntStream;
+
 public class Main {
 
   public static void main(String[] args) {
@@ -20,7 +23,21 @@ public class Main {
    */
 
   public static int sumDigits(Integer number) {
-    //@TODO: write code here and delete TODO line
-    return 0;
+    int x;
+    if (number == null) {
+      x = -1;
+      return x;
+    } else {
+      String numberString = number.toString();
+      int[] arrayOfNumbers = new int[numberString.length()];
+      for (int i = 0; i < numberString.length(); i++) {
+        char oneOfSumChar = numberString.charAt(i);
+        int oneOfSum = Character.getNumericValue(oneOfSumChar); // Использование метода  класса Character
+        // возвращение числа из символа цифры (Дополнительное задание)
+        arrayOfNumbers[i] = oneOfSum;
+      }
+      x = IntStream.of(arrayOfNumbers).sum();
+      return x;
+    }
   }
 }

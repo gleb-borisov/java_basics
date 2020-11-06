@@ -1,4 +1,4 @@
 public class Container {
 
-  public Integer count;
+  public int count; // Исправил тип переменной с обьекта на примитив
 }
