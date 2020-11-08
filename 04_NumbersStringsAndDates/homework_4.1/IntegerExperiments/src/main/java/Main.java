@@ -31,9 +31,8 @@ public class Main {
       String numberString = number.toString();
       int[] arrayOfNumbers = new int[numberString.length()];
       for (int i = 0; i < numberString.length(); i++) {
-        char oneOfSumChar = numberString.charAt(i);
-        int oneOfSum = Character.getNumericValue(oneOfSumChar); // Использование метода  класса Character
-        // возвращение числа из символа цифры (Дополнительное задание)
+        Character oneOfSumChar = numberString.charAt(i);
+        Integer oneOfSum = Integer.parseInt(oneOfSumChar.toString());
         arrayOfNumbers[i] = oneOfSum;
       }
       x = IntStream.of(arrayOfNumbers).sum();
