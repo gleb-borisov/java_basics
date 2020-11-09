@@ -16,9 +16,9 @@ public class Main {
         System.out.println("Минимальное значение числа типа long = " + Long.MIN_VALUE);
         System.out.println();
         System.out.println("Максимильное значение числа типа float = " + Float.MAX_VALUE);
-        System.out.println("Минимальное значение числа типа float = " + Float.MIN_VALUE);
+        System.out.println("Минимальное значение числа типа float = " + -Float.MIN_VALUE);
         System.out.println();
         System.out.println("Максимильное значение числа типа double = " + Double.MAX_VALUE);
-        System.out.println("Минимальное значение числа типа double = " + Double.MIN_VALUE);
+        System.out.println("Минимальное значение числа типа double = " + -Double.MIN_VALUE);
     }
 }
