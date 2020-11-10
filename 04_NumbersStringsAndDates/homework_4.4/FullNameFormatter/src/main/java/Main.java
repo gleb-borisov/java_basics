@@ -2,9 +2,7 @@ import java.util.Scanner;
 
 public class Main {
 
-  private static String nameFamily = "";
-  private static String nameFirst = "";
-  private static String nameSecond = "";
+  private static String[] nameFull = new String[3];
 
   public static void main(String[] args) {
 
@@ -33,28 +31,20 @@ public class Main {
         if (substring == -1) {
           substring = lenght;
         }
-        if (a == 0) {
-          nameFamily = input.substring(0,substring);
-        }
-        if (a == 1) {
-          nameFirst = input.substring(0,substring);
-        }
-        if (a == 2) {
-          nameSecond = input.substring(0,substring);
-        }
+        nameFull[a] = input.substring(0,substring);
         input = input.substring(substring,lenght);
         input = input.trim();
         lenght = input.length();
       }
 
-      if (nameFamily == "" || nameFirst == "" || nameSecond == "") {
+      if (nameFull[0] == "" || nameFull[1] == "" || nameFull[2] == "") {
         System.out.println("Введенная строка не является ФИО");
         return;
       }
 
-      System.out.println("Фамилия: " + nameFamily);
-      System.out.println("Имя: " + nameFirst);
-      System.out.println("Отчество: " + nameSecond);
+      System.out.println("Фамилия: " + nameFull[0]);
+      System.out.println("Имя: " + nameFull[1]);
+      System.out.println("Отчество: " + nameFull[2]);
     }
   }
 }
