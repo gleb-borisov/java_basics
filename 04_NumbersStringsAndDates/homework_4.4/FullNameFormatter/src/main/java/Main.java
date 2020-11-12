@@ -3,6 +3,10 @@ import java.util.Scanner;
 public class Main {
 
   private static String[] nameFull = new String[3];
+  private static int lenght;
+  private static String x;
+  private static int substring;
+  private static String input;
 
   public static void main(String[] args) {
 
@@ -10,34 +14,27 @@ public class Main {
 
     Scanner scanner = new Scanner(System.in);
     while (true) {
-      String input = scanner.nextLine();
+      input = scanner.nextLine();
       if (input.equals("0")) {
         break;
       }
 
       for (int i = 0; i < input.length(); i++) {
         Character digitChar = input.charAt(i);
-        if (digitChar.isDigit(digitChar)) {
+        if (Character.isDigit(digitChar)) {
           System.out.println("Введенная строка не является ФИО");
           return;
         }
       }
 
       input = input.trim();
-      int lenght = input.length();
+      lenght = input.length();
 
       for (int a = 0; a < 3; a++) {
-        int substring = input.indexOf(" ");
-        if (substring == -1) {
-          substring = lenght;
-        }
-        nameFull[a] = input.substring(0,substring);
-        input = input.substring(substring,lenght);
-        input = input.trim();
-        lenght = input.length();
+        nameFull[a] = fullNameFormatter();
       }
 
-      if (nameFull[0] == "" || nameFull[1] == "" || nameFull[2] == "") {
+      if (nameFull[0].equals("") || nameFull[1].equals("") || nameFull[2].equals("")  || input.length() != 0) {
         System.out.println("Введенная строка не является ФИО");
         return;
       }
@@ -46,5 +43,17 @@ public class Main {
       System.out.println("Имя: " + nameFull[1]);
       System.out.println("Отчество: " + nameFull[2]);
     }
+  }
+
+  public static String fullNameFormatter () {
+    substring = input.indexOf(" ");
+    if (substring == -1) {
+      substring = lenght;
+    }
+    x = input.substring(0, substring);
+    input = input.substring(substring, lenght);
+    input = input.trim();
+    lenght = input.length();
+    return x;
   }
 }
