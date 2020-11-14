@@ -1,3 +1,8 @@
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class Main {
 
@@ -8,15 +13,21 @@ public class Main {
         int year = 1990;
 
         System.out.println(collectBirthdays(year, month, day));
-
     }
 
     public static String collectBirthdays(int year, int month, int day) {
+        month = --month;
+        Calendar calendar = new GregorianCalendar(year,month,day);
+        Date date = calendar.getTime();
+        Date dateToday = new Date();
+        SimpleDateFormat formater = new SimpleDateFormat("dd.MM.yyyy - E", Locale.ENGLISH);
+        String birthCalendar = "";
 
-        //TODO реализуйте метод для построения строки в следующем виде
-        //0 - 31.12.1990 - Mon
-        //1 - 31.12.1991 - Tue
-        
-        return "";
+        for (int i = 0; date.before(dateToday); i++ ) {
+            birthCalendar = birthCalendar + "\n" + i + " - " + formater.format(date);
+            calendar.add(Calendar.YEAR, 1);
+            date = calendar.getTime();
+        }
+        return birthCalendar;
     }
 }
