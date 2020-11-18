@@ -1,33 +1,31 @@
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        int day = 31;
-        int month = 12;
-        int year = 1990;
+        int day = 27;
+        int month = 8;
+        int year = 1970;
 
         System.out.println(collectBirthdays(year, month, day));
     }
 
-    public static StringBuilder collectBirthdays(int year, int month, int day) {
-        int monthTemp = --month;
-        Calendar calendar = new GregorianCalendar(year,monthTemp,day);
-        Date date = calendar.getTime();
-        Date dateToday = new Date();
-        SimpleDateFormat formater = new SimpleDateFormat("dd.MM.yyyy - E", Locale.ENGLISH);
-        StringBuilder birthCalendar = new StringBuilder();
+    private static StringBuilder collectBirthdays(int year, int month, int day) {
 
-        for (int i = 0; date.before(dateToday); i++ ) {
-            birthCalendar.append(i + " - " + formater.format(date) + "\n");
-            calendar.add(Calendar.YEAR, 1);
-            date = calendar.getTime();
+        LocalDate birthday = LocalDate.of(year, month, day);
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy E", Locale.ENGLISH);
+        StringBuilder birthdayString = new StringBuilder();
+        int i = 0;
+
+        while (today.isAfter(birthday)) {
+            birthdayString.append(i + " - " + birthday.format(formatter) + "\n");
+            birthday = birthday.plusYears(1);
+            i++;
         }
-        return birthCalendar;
+        return birthdayString;
     }
 }
