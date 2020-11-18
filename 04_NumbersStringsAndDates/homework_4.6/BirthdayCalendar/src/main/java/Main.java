@@ -15,16 +15,16 @@ public class Main {
         System.out.println(collectBirthdays(year, month, day));
     }
 
-    public static String collectBirthdays(int year, int month, int day) {
-        month = --month;
-        Calendar calendar = new GregorianCalendar(year,month,day);
+    public static StringBuilder collectBirthdays(int year, int month, int day) {
+        int monthTemp = --month;
+        Calendar calendar = new GregorianCalendar(year,monthTemp,day);
         Date date = calendar.getTime();
         Date dateToday = new Date();
         SimpleDateFormat formater = new SimpleDateFormat("dd.MM.yyyy - E", Locale.ENGLISH);
-        String birthCalendar = "";
+        StringBuilder birthCalendar = new StringBuilder();
 
         for (int i = 0; date.before(dateToday); i++ ) {
-            birthCalendar = birthCalendar + "\n" + i + " - " + formater.format(date);
+            birthCalendar.append(i + " - " + formater.format(date) + "\n");
             calendar.add(Calendar.YEAR, 1);
             date = calendar.getTime();
         }
