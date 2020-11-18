@@ -4,6 +4,7 @@ public class Main {
 
   private static String[] wordArray;
   private static String input;
+  private static boolean isNameCorrect;
 
   public static void main(String[] args) {
 
@@ -25,21 +26,33 @@ public class Main {
         }
       }
 
+      isNameCorrect = true;
       fullNameFormatter(input);
+      checkName();
 
-      if (wordArray[0].equals("") || wordArray[1].equals("") || wordArray[2].equals("") || wordArray.length > 3) {
-        System.out.println("Введенная строка не является ФИО");
-        return;
+      if (isNameCorrect) {
+        System.out.println("Фамилия: " + wordArray[0]);
+        System.out.println("Имя: " + wordArray[1]);
+        System.out.print("Отчество: " + wordArray[2]);
+        if (wordArray.length > 3) {
+          System.out.println(" " + wordArray[3]);
+        }
       }
-
-      System.out.println("Фамилия: " + wordArray[0]);
-      System.out.println("Имя: " + wordArray[1]);
-      System.out.println("Отчество: " + wordArray[2]);
     }
   }
 
-    public static void fullNameFormatter (String input) {
+    private static void fullNameFormatter (String input) {
     input = input.trim();
     wordArray = input.split("\\s+");
     }
+
+    private static void checkName () {
+    for (int i = 0; i < 3; i++) {
+      if (wordArray[i].matches("[А-Я][А-Яа-я-]+") == false || wordArray.length < 3 || wordArray.length > 4) {
+        System.out.println("Введенная строка не является ФИО");
+        isNameCorrect = false;
+        return;
+      }
+    }
+  }
 }
