@@ -13,19 +13,20 @@ public class Main {
         System.out.println(collectBirthdays(year, month, day));
     }
 
-    private static StringBuilder collectBirthdays(int year, int month, int day) {
+    public static String collectBirthdays(int year, int month, int day) {
 
         LocalDate birthday = LocalDate.of(year, month, day);
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy E", Locale.ENGLISH);
-        StringBuilder birthdayString = new StringBuilder();
+        StringBuilder birthdayStringBuilder = new StringBuilder();
         int i = 0;
 
         while (today.isAfter(birthday)) {
-            birthdayString.append(i + " - " + birthday.format(formatter) + "\n");
+            birthdayStringBuilder.append(i + " - " + birthday.format(formatter) + "\n");
             birthday = birthday.plusYears(1);
             i++;
         }
+        String birthdayString = birthdayStringBuilder.toString();
         return birthdayString;
     }
 }
