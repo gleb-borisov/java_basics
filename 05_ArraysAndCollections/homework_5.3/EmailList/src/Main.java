@@ -41,7 +41,7 @@ public class Main {
             }
         }
         if (commandArray[0].equals("ADD")) {
-            if (emailOne.matches("[a-zA-Z0-9(_?,-?)]+(@)[a-z0-9]+(\\.)[a-z]+")) {
+            if (emailOne.matches("[a-zA-Z0-9(_?,-?)]{3,}+(@)[a-z0-9]{3,}+(\\.)(ru)?(com)?(net)?")) {
                 emailList.add(emailOne);
             } else {
                 System.out.println("Неверный формат E-mail!");
