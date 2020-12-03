@@ -52,7 +52,7 @@ public class Main {
     }
 
     private static void directSortingSearch (String number, ArrayList carNumberList) {
-        start = System.currentTimeMillis();
+        start = System.nanoTime();
         search:
         {
             for (Object search : carNumberList) {
@@ -63,12 +63,12 @@ public class Main {
             }
             System.out.print("Номер автомобиля - " + number + ", не найден.");
         }
-        duration = System.currentTimeMillis() - start;
-        System.out.println(" Время прямого перебора составило - " + duration + " мс");
+        duration = System.nanoTime() - start;
+        System.out.println(" Время прямого перебора составило - " + duration + " нс");
     }
 
     private static void binarySearch (String number, ArrayList carNumberList) {
-        start = System.currentTimeMillis();
+        start = System.nanoTime();
         int binarySearch = Integer.parseInt(number.substring(6)) * (int) Math.pow(26, 3)
                 + Arrays.asList(alphabetic).indexOf(number.substring(0, 1)) * (int) Math.pow(26, 2)
                 + Arrays.asList(alphabetic).indexOf(number.substring(4, 5)) * 26
@@ -143,31 +143,31 @@ public class Main {
             }
             System.out.print("Номер автомобиля - " + carNumberList.get(binarySearch) + ", найден.");
         }
-        duration = System.currentTimeMillis() - start;
-        System.out.println(" Время бинарного поиска составило - " + duration + " мс");
+        duration = System.nanoTime() - start;
+        System.out.println(" Время бинарного поиска составило - " + duration + " нс");
     }
 
     private static void hashSetSearch (String number, ArrayList carNumberList) {
-        start = System.currentTimeMillis();
+        start = System.nanoTime();
         HashSet<String> carNumberListHashSet = new HashSet<>(carNumberList);
         if (carNumberListHashSet.contains(number)) {
             System.out.print("Номер автомобиля - " + number + ", найден.");
         } else {
             System.out.print("Номер автомобиля - " + number + ", не найден.");
         }
-        duration = System.currentTimeMillis() - start;
-        System.out.println(" Время поиска в HashSet составило - " + duration + " мс");
+        duration = System.nanoTime() - start;
+        System.out.println(" Время поиска в HashSet составило - " + duration + " нс");
     }
 
     private static void treeSetSearch (String number, ArrayList carNumberList) {
-        start = System.currentTimeMillis();
+        start = System.nanoTime();
         HashSet<String> carNumberListTreeSet = new HashSet<>(carNumberList);
         if (carNumberListTreeSet.contains(number)) {
             System.out.print("Номер автомобиля - " + number + ", найден.");
         } else {
             System.out.print("Номер автомобиля - " + number + ", не найден.");
         }
-        duration = System.currentTimeMillis() - start;
-        System.out.println(" Время поиска в TreeMap составило - " + duration + " мс");
+        duration = System.nanoTime() - start;
+        System.out.println(" Время поиска в TreeMap составило - " + duration + " нс");
     }
 }
