@@ -68,14 +68,13 @@ public class Main {
     }
 
     private static void binarySearch (String number, ArrayList carNumberList) {
-        start = System.nanoTime();
         int binarySearch = Integer.parseInt(number.substring(6)) * (int) Math.pow(26, 3)
                 + Arrays.asList(alphabetic).indexOf(number.substring(0, 1)) * (int) Math.pow(26, 2)
                 + Arrays.asList(alphabetic).indexOf(number.substring(4, 5)) * 26
                 + Arrays.asList(alphabetic).indexOf(number.substring(5, 6));
         int regionNumber = Integer.parseInt(number.substring(6));
         int regionListNumber = 100;
-
+        start = System.nanoTime();
         if (binarySearch > 2000000) {
             System.out.print("Номер автомобиля - " + number + ", не найден.");
         } else {
