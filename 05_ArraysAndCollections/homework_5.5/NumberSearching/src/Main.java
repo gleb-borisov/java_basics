@@ -148,8 +148,8 @@ public class Main {
     }
 
     private static void hashSetSearch (String number, ArrayList carNumberList) {
-        start = System.nanoTime();
         HashSet<String> carNumberListHashSet = new HashSet<>(carNumberList);
+        start = System.nanoTime();
         if (carNumberListHashSet.contains(number)) {
             System.out.print("Номер автомобиля - " + number + ", найден.");
         } else {
@@ -160,8 +160,8 @@ public class Main {
     }
 
     private static void treeSetSearch (String number, ArrayList carNumberList) {
-        start = System.nanoTime();
         HashSet<String> carNumberListTreeSet = new HashSet<>(carNumberList);
+        start = System.nanoTime();
         if (carNumberListTreeSet.contains(number)) {
             System.out.print("Номер автомобиля - " + number + ", найден.");
         } else {
