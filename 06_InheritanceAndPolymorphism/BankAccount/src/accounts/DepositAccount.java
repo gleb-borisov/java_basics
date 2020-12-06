@@ -6,7 +6,7 @@ import java.util.Date;
 public class DepositAccount extends BankAccount {
 
     private double sumTotalDeposit;
-    private Boolean timeLimit;
+    private Boolean timeLimit = false;
     private ArrayList<Date> depositDate = new ArrayList<>();
     private ArrayList<Double> depositSum = new ArrayList<>();
 
@@ -18,16 +18,28 @@ public class DepositAccount extends BankAccount {
         return timeLimit;
     }
 
-    public void depositAmount (double sum) {
-        sumTotalDeposit = sumTotalDeposit + sum;
+    public double depositAmount (double sum, String choice) {
+        super.setSumTotal(sumTotalDeposit);
+        sumTotalDeposit = super.depositAmount(sum, choice);
         System.out.println("Вы внесли - " + sum + " руб.");
         System.out.println("На Вашем депозитном счете - " + sumTotalDeposit + " руб.");
         depositDate.add(new Date());
         depositSum.add(sum);
+        return sumTotalDeposit;
     }
 
-    public void withdrawAmount (double sum) {
-        timeLimit = false;
+    public double depositAmount (double sum) {
+        super.setSumTotal(sumTotalDeposit);
+        sumTotalDeposit = super.depositAmount(sum);
+        System.out.println("Вы внесли - " + sum + " руб.");
+        System.out.println("На Вашем депозитном счете - " + sumTotalDeposit + " руб.");
+        depositDate.add(new Date());
+        depositSum.add(sum);
+        return sumTotalDeposit;
+    }
+
+    public double withdrawAmount (double sum, double COMMISSION, String choice) {
+        super.setSumTotal(sumTotalDeposit);
         Date today = new Date();
         Double sumCanWithdraw = 0.0;
         for (int i = 0; i < depositDate.size(); i++) {
@@ -43,11 +55,12 @@ public class DepositAccount extends BankAccount {
             System.out.println("Вы не можете снять деньги с депозитного счета\n" +
                     "т.к на счету нет суммы внесенной более месяца назад.");
             timeLimit = true;
-            return;
+            return sumTotalDeposit;
         }
-        sumTotalDeposit = sumTotalDeposit - sum;
+        sumTotalDeposit = super.withdrawAmount(sum, COMMISSION, choice);
         System.out.println("Вы сняли - " + sum + " руб.");
         System.out.println("На Вашем депозитном счете - " + sumTotalDeposit + " руб.");
+        return sumTotalDeposit;
     }
 
     public void balanceAccount () {

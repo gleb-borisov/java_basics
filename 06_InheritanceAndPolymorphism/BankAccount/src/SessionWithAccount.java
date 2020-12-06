@@ -41,13 +41,13 @@ public class SessionWithAccount {
             System.out.print("Внесите сумму - ");
             sum = inSum.nextDouble();
             if (choice.equals("1")) {
-                account.depositAmount(sum);
+                account.depositAmount(sum, choice);
             }
             if (choice.equals("2")) {
-                depositAccount.depositAmount(sum);
+                depositAccount.depositAmount(sum, choice);
             }
             if (choice.equals("3")) {
-                cardAccount.depositAmount(sum);
+                cardAccount.depositAmount(sum, choice);
             }
         }
     }
@@ -72,7 +72,7 @@ public class SessionWithAccount {
                     break;
                 }
             }
-            account.withdrawAmount(sum);
+            account.withdrawAmount(sum, account.getCOMMISSION_ORDINARY(), choice);
         }
         if (choice.equals("2")) {
             while (true) {
@@ -83,7 +83,7 @@ public class SessionWithAccount {
                     break;
                 }
             }
-            depositAccount.withdrawAmount(sum);
+            depositAccount.withdrawAmount(sum, depositAccount.getCOMMISSION_DEPOSIT(), choice);
         }
         if (choice.equals("3")) {
             while (true) {
@@ -94,7 +94,7 @@ public class SessionWithAccount {
                     break;
                 }
             }
-            cardAccount.withdrawAmount(sum);
+            cardAccount.withdrawAmount(sum, cardAccount.getCOMMISSION_CARD(), choice);
         }
     }
 
@@ -144,7 +144,7 @@ public class SessionWithAccount {
                 return;
             }
             if (commandTransfer.equals("1")) {
-                account.depositAmount(sum);
+                account.depositAmount(commandTransfer, sum);
             }
             if (commandTransfer.equals("2")) {
                 depositAccount.depositAmount(sum);
