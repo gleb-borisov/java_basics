@@ -54,13 +54,14 @@ public class Main {
         {
             for (Object search : carNumberList) {
                 if (search.equals(number)) {
+                    duration = System.nanoTime() - start;
                     System.out.print("Номер автомобиля - " + number + ", найден.");
                     break search;
                 }
             }
+            duration = System.nanoTime() - start;
             System.out.print("Номер автомобиля - " + number + ", не найден.");
         }
-        duration = System.nanoTime() - start;
         System.out.println(" Время прямого перебора составило - " + duration + " нс");
     }
 
@@ -69,11 +70,12 @@ public class Main {
         start = System.nanoTime();
         int index = Collections.binarySearch(carNumberList, number);
         if (index < 0) {
+            duration = System.nanoTime() - start;
             System.out.print("Номер автомобиля - " + number + ", не найден.");
         } else {
+            duration = System.nanoTime() - start;
             System.out.print("Номер автомобиля - " + carNumberList.get(index) + ", найден.");
         }
-        duration = System.nanoTime() - start;
         System.out.println(" Время бинарного поиска составило - " + duration + " нс");
     }
 
@@ -81,23 +83,25 @@ public class Main {
         HashSet<String> carNumberListHashSet = new HashSet<>(carNumberList);
         start = System.nanoTime();
         if (carNumberListHashSet.contains(number)) {
+            duration = System.nanoTime() - start;
             System.out.print("Номер автомобиля - " + number + ", найден.");
         } else {
+            duration = System.nanoTime() - start;
             System.out.print("Номер автомобиля - " + number + ", не найден.");
         }
-        duration = System.nanoTime() - start;
         System.out.println(" Время поиска в HashSet составило - " + duration + " нс");
     }
 
     private static void treeSetSearch (String number, ArrayList carNumberList) {
-        HashSet<String> carNumberListTreeSet = new HashSet<>(carNumberList);
+        TreeSet<String> carNumberListTreeSet = new TreeSet<>(carNumberList);
         start = System.nanoTime();
         if (carNumberListTreeSet.contains(number)) {
+            duration = System.nanoTime() - start;
             System.out.print("Номер автомобиля - " + number + ", найден.");
         } else {
+            duration = System.nanoTime() - start;
             System.out.print("Номер автомобиля - " + number + ", не найден.");
         }
-        duration = System.nanoTime() - start;
         System.out.println(" Время поиска в TreeMap составило - " + duration + " нс");
     }
 }
