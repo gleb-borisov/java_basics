@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -68,79 +65,13 @@ public class Main {
     }
 
     private static void binarySearch (String number, ArrayList carNumberList) {
-        int binarySearch = Integer.parseInt(number.substring(6)) * (int) Math.pow(26, 3)
-                + Arrays.asList(alphabetic).indexOf(number.substring(0, 1)) * (int) Math.pow(26, 2)
-                + Arrays.asList(alphabetic).indexOf(number.substring(4, 5)) * 26
-                + Arrays.asList(alphabetic).indexOf(number.substring(5, 6));
-        int regionNumber = Integer.parseInt(number.substring(6));
-        int regionListNumber = 100;
+        Collections.sort(carNumberList);
         start = System.nanoTime();
-        if (binarySearch > 2000000) {
+        int index = Collections.binarySearch(carNumberList, number);
+        if (index < 0) {
             System.out.print("Номер автомобиля - " + number + ", не найден.");
         } else {
-            binarySearch = 0;
-
-            while (true) {
-                if (binarySearch > 2000000) {
-                    System.out.print("Номер автомобиля - " + number + ", не найден.");
-                    break;
-                }
-                if (regionNumber == regionListNumber) {
-                    binarySearch = regionListNumber * (int) Math.pow(26, 3);
-                    break;
-                }
-                if (regionNumber < regionListNumber) {
-                    regionListNumber = regionListNumber / 2;
-                } else {
-                    regionListNumber = regionListNumber + regionListNumber / 2;
-                }
-            }
-
-            int letterOneToDigit = 13;
-            int letterOneOfNumberToDigit = Arrays.asList(alphabetic).indexOf(number.substring(0, 1));
-
-            while (true) {
-                if (letterOneOfNumberToDigit == letterOneToDigit) {
-                    binarySearch = binarySearch + letterOneToDigit * (int) Math.pow(26, 2);
-                    break;
-                }
-                if (letterOneOfNumberToDigit < letterOneToDigit) {
-                    letterOneToDigit = Math.round(letterOneToDigit / 2);
-                } else {
-                    letterOneToDigit = letterOneToDigit + Math.round(letterOneToDigit / 2);
-                }
-            }
-
-            letterOneToDigit = 13;
-            letterOneOfNumberToDigit = Arrays.asList(alphabetic).indexOf(number.substring(4, 5));
-
-            while (true) {
-                if (letterOneOfNumberToDigit == letterOneToDigit) {
-                    binarySearch = binarySearch + letterOneToDigit * 26;
-                    break;
-                }
-                if (letterOneOfNumberToDigit < letterOneToDigit) {
-                    letterOneToDigit = Math.round(letterOneToDigit / 2);
-                } else {
-                    letterOneToDigit = letterOneToDigit + Math.round(letterOneToDigit / 2);
-                }
-            }
-
-            letterOneToDigit = 13;
-            letterOneOfNumberToDigit = Arrays.asList(alphabetic).indexOf(number.substring(5, 6));
-
-            while (true) {
-                if (letterOneOfNumberToDigit == letterOneToDigit) {
-                    binarySearch = binarySearch + letterOneToDigit;
-                    break;
-                }
-                if (letterOneOfNumberToDigit < letterOneToDigit) {
-                    letterOneToDigit = Math.round(letterOneToDigit / 2);
-                } else {
-                    letterOneToDigit = letterOneToDigit + Math.round(letterOneToDigit / 2);
-                }
-            }
-            System.out.print("Номер автомобиля - " + carNumberList.get(binarySearch) + ", найден.");
+            System.out.print("Номер автомобиля - " + carNumberList.get(index) + ", найден.");
         }
         duration = System.nanoTime() - start;
         System.out.println(" Время бинарного поиска составило - " + duration + " нс");
