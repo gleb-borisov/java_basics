@@ -24,9 +24,10 @@ public class CardAccount extends BankAccount{
         return sumTotalCard;
     }
 
-    public double withdrawAmount (double sum, double COMMISSION, String choice) {
+    public double withdrawAmount (double sum, String choice) {
         super.setSumTotal(sumTotalCard);
-        sumTotalCard = super.withdrawAmount(sum, COMMISSION, choice);
+        sum = sum * COMMISSION_CARD;
+        sumTotalCard = super.withdrawAmount(sum, choice);
         System.out.println("Вы сняли - " + sum + " руб.");
         System.out.println("Процент за снятие - 1%.");
         System.out.println("На Вашем карточном счете - " + sumTotalCard + " руб.");

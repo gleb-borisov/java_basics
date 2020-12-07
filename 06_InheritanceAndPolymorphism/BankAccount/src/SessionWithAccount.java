@@ -72,7 +72,7 @@ public class SessionWithAccount {
                     break;
                 }
             }
-            account.withdrawAmount(sum, account.getCOMMISSION_ORDINARY(), choice);
+            account.withdrawAmount(sum, choice);
         }
         if (choice.equals("2")) {
             while (true) {
@@ -83,7 +83,7 @@ public class SessionWithAccount {
                     break;
                 }
             }
-            depositAccount.withdrawAmount(sum, depositAccount.getCOMMISSION_DEPOSIT(), choice);
+            depositAccount.withdrawAmount(sum, choice);
         }
         if (choice.equals("3")) {
             while (true) {
@@ -94,7 +94,7 @@ public class SessionWithAccount {
                     break;
                 }
             }
-            cardAccount.withdrawAmount(sum, cardAccount.getCOMMISSION_CARD(), choice);
+            cardAccount.withdrawAmount(sum, choice);
         }
     }
 

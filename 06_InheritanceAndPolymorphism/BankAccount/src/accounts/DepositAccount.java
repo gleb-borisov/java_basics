@@ -38,7 +38,7 @@ public class DepositAccount extends BankAccount {
         return sumTotalDeposit;
     }
 
-    public double withdrawAmount (double sum, double COMMISSION, String choice) {
+    public double withdrawAmount (double sum, String choice) {
         super.setSumTotal(sumTotalDeposit);
         Date today = new Date();
         Double sumCanWithdraw = 0.0;
@@ -57,7 +57,8 @@ public class DepositAccount extends BankAccount {
             timeLimit = true;
             return sumTotalDeposit;
         }
-        sumTotalDeposit = super.withdrawAmount(sum, COMMISSION, choice);
+        sum = sum * COMMISSION_DEPOSIT;
+        sumTotalDeposit = super.withdrawAmount(sum, choice);
         System.out.println("Вы сняли - " + sum + " руб.");
         System.out.println("На Вашем депозитном счете - " + sumTotalDeposit + " руб.");
         return sumTotalDeposit;
