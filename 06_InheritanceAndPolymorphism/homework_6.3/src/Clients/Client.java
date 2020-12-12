@@ -1,6 +1,6 @@
-package Clients;
+package clients;
 
-abstract class Client {
+public class Client {
 
     protected String clientName;
     protected double clientAccount;

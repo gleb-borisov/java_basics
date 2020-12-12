@@ -12,6 +12,7 @@ public class Main {
                         break;
                     }
                     while (true) {
+                        menu.createNewPersonAccount(menu.getChoice());
                         menu.newAccountCreation();
                         if (menu.getCommand().equals("0")) {
                             break;
