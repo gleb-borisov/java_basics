@@ -15,8 +15,8 @@ public class Main {
         newCompany.getLowestSalaryStaff(30);
 
         System.out.println("Увольняем 50 процентов персонала:");
-        for (int i = 0; i < 135; i++) {
-            newCompany.fire(0);
+        for (int i = 0; i < 135; i++) {            ;
+            newCompany.fire(newCompany.employees.get(i));
         }
         System.out.println("В компании осталось - " + newCompany.employees.size() + " человек.");
 

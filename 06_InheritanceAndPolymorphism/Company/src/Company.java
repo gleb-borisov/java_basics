@@ -1,94 +1,85 @@
 import employee.Employee;
 import employee.Manager;
-import employee.Operator;
-import employee.TopManager;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.ArrayList;
 
-public class Company implements Comparator<Employee> {
+public class Company {
 
     private int companyIncome = 0;
-    boolean trigger;
+    String rang;
     ArrayList<Employee> employees = new ArrayList<>();
     ArrayList<Employee> managersList = new ArrayList<>();
     ArrayList<Employee> topManagerList = new ArrayList<>();
     ArrayList<Employee> operatorList = new ArrayList<>();
+    ArrayList<Integer> salary = new ArrayList<>();
 
-    public ArrayList<Employee> getTopSalaryStaff(int count) {
-        if (count > employees.size()) {
-            count = employees.size();
+    public void makingSalaryList () {
+        for (int i = 0; i < employees.size(); i++) {
+            salary.add(employees.get(i).getMonthSalary());
         }
-        trigger = true;
-        Collections.sort(employees, this::compare);
+    }
+
+    public ArrayList<Integer> getTopSalaryStaff(int count) {
+        salary.clear();
+        makingSalaryList();
+        if (count > salary.size()) {
+            count = salary.size();
+        }
+        Collections.sort(salary, Collections.reverseOrder());
         for (int i = 0; i < count; i++) {
-            System.out.println(employees.get(i).getMonthSalary() + " руб.");
+            System.out.println(salary.get(i) + " руб.");
         }
         return null;
     }
 
-    public ArrayList<Employee> getLowestSalaryStaff(int count) {
-        if (count > employees.size()) {
-            count = employees.size();
+    public ArrayList<Integer> getLowestSalaryStaff(int count) {
+        salary.clear();
+        makingSalaryList();
+        if (count > salary.size()) {
+            count = salary.size();
         }
-        trigger = false;
-        Collections.sort(employees, this::compare);
+        Collections.sort(salary);
         for (int i = 0; i < count; i++) {
-            System.out.println(employees.get(i).getMonthSalary() + " руб.");
+            System.out.println(salary.get(i) + " руб.");
         }
         return null;
     }
 
     public void hireAll () {
+        rang = "manager";
         for (int i = 0; i < 180; i++) {
-            Manager manager = new Manager();
-            manager.setIncomeManagerForCompany(115000 + (int)((140000 - 115000) * Math.random()));
-            manager.setSalary(manager.getSALARY_OF_MANAGER() + (int)(manager.getIncomeManagerForCompany() * 0.05));
-            managersList.add(manager);
+            managersList.add(hire(rang, companyIncome));
         }
         getCompanyIncome();
+        rang = "topmanager";
         for (int i = 0; i < 10; i++) {
-            TopManager topManager = new TopManager();
-            if (companyIncome > 10000000) {
-                topManager.setSalary(topManager.getSALARY_OF_TOP_MANAGER() + (int) (topManager.getSALARY_OF_TOP_MANAGER() * 1.5));
-            } else {
-                topManager.setSalary(topManager.getSALARY_OF_TOP_MANAGER());
-            }
-            topManagerList.add(topManager);
+            topManagerList.add(hire(rang, companyIncome));
         }
+        rang = "operator";
         for (int i = 0; i < 80; i++) {
-            Operator operator = new Operator();
-            operator.setSalary(operator.getSALARY_OF_OPERATOR());
-            operatorList.add(operator);
+            operatorList.add(hire(rang, companyIncome));
         }
     }
 
-    public void hire(String rang) {
+    public Employee hire(String rang, int companyIncome) {
         if (rang.equals("manager")) {
-            Manager manager = new Manager();
-            manager.setIncomeManagerForCompany(115000 + (int)((140000 - 115000) * Math.random()));
-            manager.setSalary(manager.getSALARY_OF_MANAGER() + (int) (manager.getIncomeManagerForCompany() * 0.05));
-            managersList.add(manager);
+            Recruiting recruiting = new Recruiting();
+            return recruiting.recruitingManager();
         }
         if (rang.equals("topmanager")) {
-            TopManager topManager = new TopManager();
-            if (companyIncome > 10000000) {
-                topManager.setSalary(topManager.getSALARY_OF_TOP_MANAGER() + (int) (topManager.getSALARY_OF_TOP_MANAGER() * 1.5));
-            } else {
-                topManager.setSalary(topManager.getSALARY_OF_TOP_MANAGER());
-            }
-            topManagerList.add(topManager);
+            Recruiting recruiting = new Recruiting();
+            return recruiting.recruitingTopManager(companyIncome);
         }
         if (rang.equals("operator")) {
-            Operator operator = new Operator();
-            operator.setSalary(operator.getSALARY_OF_OPERATOR());
-            operatorList.add(operator);
+            Recruiting recruiting = new Recruiting();
+            return recruiting.recruitingOperator();
         }
+        return null;
     }
 
-    public void fire (int index) {
-        employees.remove(index);
+    public void fire (Employee person) {
+        employees.remove(person);
     }
 
     public void getEmployeesList() {
@@ -102,34 +93,5 @@ public class Company implements Comparator<Employee> {
             companyIncome += ((Manager) person).getIncomeManagerForCompany();
         }
         return companyIncome;
-    }
-
-    @Override
-    public int compare(Employee o1, Employee o2) {
-        if (trigger) {
-            return compareTopSalaryStaff(o1, o2);
-        } else {
-            return compareLowestSalaryStaff(o1, o2);
-        }
-    }
-
-    public int compareTopSalaryStaff (Employee o1, Employee o2) {
-        if (o1.getMonthSalary() > o2.getMonthSalary()) {
-            return -1;
-        }
-        if (o1.getMonthSalary() < o2.getMonthSalary()) {
-            return 1;
-        }
-        return 0;
-    }
-
-    public int compareLowestSalaryStaff (Employee o1, Employee o2) {
-        if (o1.getMonthSalary() < o2.getMonthSalary()) {
-            return -1;
-        }
-        if (o1.getMonthSalary() > o2.getMonthSalary()) {
-            return 1;
-        }
-        return 0;
     }
 }
