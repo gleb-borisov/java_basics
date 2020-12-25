@@ -6,7 +6,7 @@ public class Main {
         System.out.println("Создана новая компания.");
 
         newCompany.getEmployeesList();
-        System.out.println("Кол-во сотрудников в компании - " + newCompany.employees.size() + " человек.");
+        System.out.println("Кол-во сотрудников в компании - " + newCompany.getEmployees().size() + " человек.");
         System.out.println("Компания заработала за месяц - " + newCompany.getCompanyIncome() + " руб.");
 
         System.out.println("Список самых высоких зарплат компании:");
@@ -16,9 +16,9 @@ public class Main {
 
         System.out.println("Увольняем 50 процентов персонала:");
         for (int i = 0; i < 135; i++) {            ;
-            newCompany.fire(newCompany.employees.get(i));
+            newCompany.fire(newCompany.getEmployees().get(i));
         }
-        System.out.println("В компании осталось - " + newCompany.employees.size() + " человек.");
+        System.out.println("В компании осталось - " + newCompany.getEmployees().size() + " человек.");
 
         System.out.println("Список самых высоких зарплат компании:");
         newCompany.getTopSalaryStaff(15);

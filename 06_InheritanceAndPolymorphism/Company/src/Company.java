@@ -7,12 +7,16 @@ import java.util.ArrayList;
 public class Company {
 
     private int companyIncome = 0;
-    String rang;
-    ArrayList<Employee> employees = new ArrayList<>();
-    ArrayList<Employee> managersList = new ArrayList<>();
-    ArrayList<Employee> topManagerList = new ArrayList<>();
-    ArrayList<Employee> operatorList = new ArrayList<>();
-    ArrayList<Integer> salary = new ArrayList<>();
+    private String rang;
+    private ArrayList<Employee> employees = new ArrayList<>();
+    private ArrayList<Employee> managersList = new ArrayList<>();
+    private ArrayList<Employee> topManagerList = new ArrayList<>();
+    private ArrayList<Employee> operatorList = new ArrayList<>();
+    private ArrayList<Integer> salary = new ArrayList<>();
+
+    public ArrayList<Employee> getEmployees() {
+        return employees;
+    }
 
     public void makingSalaryList () {
         for (int i = 0; i < employees.size(); i++) {
