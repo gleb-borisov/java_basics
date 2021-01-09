@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.List;
@@ -6,7 +7,7 @@ public class Main {
 
     private static final String STAFF_TXT = "data/staff.txt";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         List<Employee> staff = Employee.loadStaffFromFile(STAFF_TXT);
         Employee employeeMaxSalary = findEmployeeWithHighestSalary(staff, 2017);
         System.out.println(employeeMaxSalary);
