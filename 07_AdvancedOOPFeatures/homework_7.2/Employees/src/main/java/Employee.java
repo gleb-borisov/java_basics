@@ -20,38 +20,22 @@ public class Employee {
 
   public static List<Employee> loadStaffFromFile(String path) throws IOException {
 
-    List<Employee> staff = new ArrayList<>();
-
-    for (int i = 0; i < Files.lines(Paths.get(path))
-            .flatMap(a -> Arrays.asList(a.split("\\n")).stream())
-            .collect(Collectors.toList()).size(); i++) {
-
-      staff.add(new Employee(
-
-              Files.lines(Paths.get(path))
-                      .flatMap(p -> Arrays.asList(p.split("\\t")).stream())
-                      .filter(a -> a.matches("[^\\d\\.\\t]+"))
-                      .collect(Collectors.toList()).get(i),
-
-              Files.lines(Paths.get(path))
-                      .flatMap(p -> Arrays.asList(p.split("\\t")).stream())
-                      .filter(a -> a.matches("\\w+"))
-                      .map((a) -> Integer.parseInt(a))
-                      .collect(Collectors.toList()).get(i),
-
-              Files.lines(Paths.get(path))
-                      .flatMap(p -> Arrays.asList(p.split("\\t")).stream())
-                      .filter(a -> a.matches("(\\d{2}).(\\d{2}).(\\d{4})"))
-                      .map(a -> {
-                        try {
-                          return new SimpleDateFormat("dd.MM.yyyy").parse(a);
-                        } catch (ParseException e) {
-                          e.printStackTrace();
-                        }
-                        return null;
-                      })
-                      .collect(Collectors.toList()).get(i)));
-    }
+    List<Employee> staff = Files.lines(Paths.get(path))
+            .map(line -> line.split("\t"))
+            .filter(fragments -> fragments.length == 3)
+            .map(fragments -> {
+              try {
+                return new Employee(
+                        fragments[0],
+                        Integer.parseInt(fragments[1]),
+                        (new SimpleDateFormat("dd.MM.yyyy")).parse(fragments[2])
+                );
+              } catch (ParseException e) {
+                e.printStackTrace();
+              }
+              return null;
+            })
+            .collect(Collectors.toList());
     return staff;
   }
 
