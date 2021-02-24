@@ -30,6 +30,11 @@ public class CustomerStorage {
                 throw new EmailNameIsWrongFormat ("Email name is wrong format.");
             }
 
+            if (components[INDEX_NAME].matches("[А-я]+") && components[INDEX_SURNAME].matches("[А-я]+")) {
+            } else {
+                throw new NameIsWrongFormat ("Name/Surname is wrong format.");
+            }
+
             String name = components[INDEX_NAME] + " " + components[INDEX_SURNAME];
             storage.put(name, new Customer(name, components[INDEX_PHONE], components[INDEX_EMAIL]));
         } catch (ComponentsLengthVolumeWrong e) {
@@ -37,6 +42,8 @@ public class CustomerStorage {
         } catch (EmailNameIsWrongFormat e) {
             System.out.println(e.getMessage());
         } catch (PhoneNumberIsWrongFormat e) {
+            System.out.println(e.getMessage());
+        } catch (NameIsWrongFormat e) {
             System.out.println(e.getMessage());
         }
     }
@@ -71,6 +78,12 @@ public class CustomerStorage {
 
     private class EmailNameIsWrongFormat extends Throwable {
         public EmailNameIsWrongFormat (String massage) {
+            super (massage);
+        }
+    }
+
+    private class  NameIsWrongFormat extends Throwable {
+        public NameIsWrongFormat (String massage) {
             super (massage);
         }
     }
