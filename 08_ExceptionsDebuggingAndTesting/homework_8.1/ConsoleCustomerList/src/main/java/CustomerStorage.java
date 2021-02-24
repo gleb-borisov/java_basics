@@ -14,9 +14,31 @@ public class CustomerStorage {
         final int INDEX_EMAIL = 2;
         final int INDEX_PHONE = 3;
 
-        String[] components = data.split("\\s+");
-        String name = components[INDEX_NAME] + " " + components[INDEX_SURNAME];
-        storage.put(name, new Customer(name, components[INDEX_PHONE], components[INDEX_EMAIL]));
+        try {
+            String[] components = data.split("\\s+");
+            if (components.length != 4) {
+                throw new ComponentsLengthVolumeWrong("Components length volume not equal to 4.");
+            }
+
+            if (components[INDEX_PHONE].matches("(\\+7|8|007)\\d+")) {
+            } else {
+                throw new PhoneNumberIsWrongFormat ("Phone number is wrong format.");
+            }
+
+            if (components[INDEX_EMAIL].matches("\\w+(|\\.\\w+)@\\w+\\.[ru|com|gov]+")) {
+            } else {
+                throw new EmailNameIsWrongFormat ("Email name is wrong format.");
+            }
+
+            String name = components[INDEX_NAME] + " " + components[INDEX_SURNAME];
+            storage.put(name, new Customer(name, components[INDEX_PHONE], components[INDEX_EMAIL]));
+        } catch (ComponentsLengthVolumeWrong e) {
+            System.out.println(e.getMessage());
+        } catch (EmailNameIsWrongFormat e) {
+            System.out.println(e.getMessage());
+        } catch (PhoneNumberIsWrongFormat e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void listCustomers() {
@@ -33,5 +55,23 @@ public class CustomerStorage {
 
     public int getCount() {
         return storage.size();
+    }
+
+    private class ComponentsLengthVolumeWrong extends Throwable {
+        public ComponentsLengthVolumeWrong (String message) {
+            super (message);
+        }
+    }
+
+    private class PhoneNumberIsWrongFormat extends Throwable {
+        public PhoneNumberIsWrongFormat (String massage) {
+            super (massage);
+        }
+    }
+
+    private class EmailNameIsWrongFormat extends Throwable {
+        public EmailNameIsWrongFormat (String massage) {
+            super (massage);
+        }
     }
 }
