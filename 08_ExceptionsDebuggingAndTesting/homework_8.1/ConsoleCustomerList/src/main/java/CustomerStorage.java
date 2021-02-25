@@ -14,38 +14,29 @@ public class CustomerStorage {
         final int INDEX_EMAIL = 2;
         final int INDEX_PHONE = 3;
 
-        try {
-            String[] components = data.split("\\s+");
-            if (components.length != 4) {
-                throw new ComponentsLengthVolumeWrong("Components length volume not equal to 4.");
-            }
 
-            if (components[INDEX_PHONE].matches("(\\+7|8|007)\\d+")) {
-            } else {
-                throw new PhoneNumberIsWrongFormat ("Phone number is wrong format.");
-            }
+    String[] components = data.split("\\s+");
+    if (components.length != 4) {
+        throw new ComponentsLengthVolumeWrongException("Components length volume not equal to 4.");
+    }
 
-            if (components[INDEX_EMAIL].matches("\\w+(|\\.\\w+)@\\w+\\.[ru|com|gov]+")) {
-            } else {
-                throw new EmailNameIsWrongFormat ("Email name is wrong format.");
-            }
+    if (components[INDEX_PHONE].matches("(\\+7|8|007)\\d+")) {
+    } else {
+        throw new PhoneNumberIsWrongFormatException ("Phone number is wrong format.");
+    }
 
-            if (components[INDEX_NAME].matches("[А-я]+") && components[INDEX_SURNAME].matches("[А-я]+")) {
-            } else {
-                throw new NameIsWrongFormat ("Name/Surname is wrong format.");
-            }
+    if (components[INDEX_EMAIL].matches("\\w+(|\\.\\w+)@\\w+\\.[ru|com|gov]+")) {
+    } else {
+        throw new EmailNameIsWrongFormatException ("Email name is wrong format.");
+    }
 
-            String name = components[INDEX_NAME] + " " + components[INDEX_SURNAME];
-            storage.put(name, new Customer(name, components[INDEX_PHONE], components[INDEX_EMAIL]));
-        } catch (ComponentsLengthVolumeWrong e) {
-            System.out.println(e.getMessage());
-        } catch (EmailNameIsWrongFormat e) {
-            System.out.println(e.getMessage());
-        } catch (PhoneNumberIsWrongFormat e) {
-            System.out.println(e.getMessage());
-        } catch (NameIsWrongFormat e) {
-            System.out.println(e.getMessage());
-        }
+    if (components[INDEX_NAME].matches("[А-я]+") && components[INDEX_SURNAME].matches("[А-я]+")) {
+    } else {
+        throw new NameIsWrongFormatException ("Name/Surname is wrong format.");
+    }
+
+    String name = components[INDEX_NAME] + " " + components[INDEX_SURNAME];
+    storage.put(name, new Customer(name, components[INDEX_PHONE], components[INDEX_EMAIL]));
     }
 
     public void listCustomers() {
@@ -62,29 +53,5 @@ public class CustomerStorage {
 
     public int getCount() {
         return storage.size();
-    }
-
-    private class ComponentsLengthVolumeWrong extends Throwable {
-        public ComponentsLengthVolumeWrong (String message) {
-            super (message);
-        }
-    }
-
-    private class PhoneNumberIsWrongFormat extends Throwable {
-        public PhoneNumberIsWrongFormat (String massage) {
-            super (massage);
-        }
-    }
-
-    private class EmailNameIsWrongFormat extends Throwable {
-        public EmailNameIsWrongFormat (String massage) {
-            super (massage);
-        }
-    }
-
-    private class  NameIsWrongFormat extends Throwable {
-        public NameIsWrongFormat (String massage) {
-            super (massage);
-        }
     }
 }
