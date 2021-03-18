@@ -74,8 +74,8 @@ public class RouteCalculatorTest extends TestCase {
     }
 
     public void testCalculateDurationWithoutConnection() {
-        from = stationIndex.getStation("Морковная");
-        to = stationIndex.getStation("Картошечная");
+        from = stationIndex.getStation("Морковная", 1);
+        to = stationIndex.getStation("Картошечная", 1);
         route = calculator.getShortestRoute(from, to);
         double actual = calculator.calculateDuration(route);
         double expected = 5;
