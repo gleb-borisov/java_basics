@@ -14,9 +14,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static Logger loggerSearchFile = LogManager.getLogger("searchFile");
-    private static Logger loggerInputErrors = LogManager.getLogger("inputErrors");
-    private static Logger loggerExceptions = LogManager.getLogger("exceptions");
+    private static Logger logger = LogManager.getLogger(Main.class);
 
     private static final String DATA_FILE = "src/main/resources/map.json";
     private static Scanner scanner;
@@ -31,9 +29,9 @@ public class Main {
         for (; ; ) {
             try {
                 Station from = takeStation("Введите станцию отправления:");
-                loggerSearchFile.info("Станция отправления - " + from.getName());
+                logger.info("Станция отправления - " + from.getName());
                 Station to = takeStation("Введите станцию назначения:");
-                loggerSearchFile.info("Станция назначения - " + to.getName());
+                logger.info("Станция назначения - " + to.getName());
 
                 List<Station> route = calculator.getShortestRoute(from, to);
                 System.out.println("Маршрут:");
@@ -42,7 +40,7 @@ public class Main {
                 System.out.println("Длительность: " +
                         RouteCalculator.calculateDuration(route) + " минут");
             } catch (Exception e) {
-                loggerExceptions.error(e.getMessage());
+                logger.error(e.getMessage());
             }
         }
     }
@@ -76,7 +74,7 @@ public class Main {
             if (station != null) {
                 return station;
             }
-            loggerInputErrors.info("Станция не найдена: " + line);
+            logger.warn("Станция не найдена: " + line);
             System.out.println("Станция не найдена :(");
         }
     }
