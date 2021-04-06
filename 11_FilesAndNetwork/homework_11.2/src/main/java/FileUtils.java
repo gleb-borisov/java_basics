@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Scanner;
 
 public class FileUtils {
 
@@ -22,8 +23,22 @@ public class FileUtils {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                     System.out.println("Файл - " + file.toString());
-                    Files.copy(file, Paths.get(destinationDirectory).resolve(Paths.get(sourceDirectory).relativize(file)),
-                            StandardCopyOption.REPLACE_EXISTING);
+                    Path files = Paths.get(destinationDirectory).resolve(Paths.get(sourceDirectory).relativize(file));
+                    if (Files.exists(files)){
+                        System.out.println("Файл уже существует!");
+                        System.out.print("Заменить файл (yes/no)? - ");
+                        Scanner scanner = new Scanner(System.in);
+                        String yesNoCopy = scanner.nextLine();
+                        if (yesNoCopy.equals("no")) {
+                            return FileVisitResult.CONTINUE;
+                        } else {
+                            Files.copy(file, Paths.get(destinationDirectory).resolve(Paths.get(sourceDirectory).relativize(file)),
+                                    StandardCopyOption.REPLACE_EXISTING);
+                        }
+                    } else {
+                        Files.copy(file, Paths.get(destinationDirectory).resolve(Paths.get(sourceDirectory).relativize(file)),
+                                StandardCopyOption.REPLACE_EXISTING);
+                    }
                     return FileVisitResult.CONTINUE;
                 }
 
