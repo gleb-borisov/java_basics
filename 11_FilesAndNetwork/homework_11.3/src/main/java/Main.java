@@ -10,6 +10,7 @@ public class Main {
 
         System.out.println("Сумма доходов - " + movements.getIncomeSum() + " руб.");
         System.out.println("Сумма расходов - " + movements.getExpenseSum() + " руб.");
-        movements.makeMovementList();
+
+        movements.getListTransaction();
     }
 }
