@@ -21,10 +21,7 @@ public class Movements {
     public double getIncomeSum() throws IOException {
         parseTextFile(pathMovementsCsv);
         sum = 0.0;
-        transactions.forEach(e-> {if (e.getIncome() == null) {
-                e.setIncome(0.0);}
-            sum += e.getIncome();
-        });
+        transactions.forEach(e-> sum += e.getIncome());
         return sum;
     }
 
